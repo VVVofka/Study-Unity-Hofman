@@ -23,9 +23,9 @@ public class WanderingAI : MonoBehaviour {
             if(Physics.SphereCast(ray, 0.75f, out hit)) {
                 GameObject hitObject = hit.transform.gameObject;
                 if(hitObject.GetComponent<PlayerCharacter>()) {
-                    Debug.Log("Fire!");
+                    //Debug.Log("Fire!");
                     if(_fireball == null) {
-                        Debug.Log("Create ball");
+                        //Debug.Log("Create ball");
                         _fireball = Instantiate(fireballPrefab) as GameObject;
                         _fireball.transform.position = transform.TransformPoint(Vector3.forward * 1.5f);
                         _fireball.transform.rotation = transform.rotation;

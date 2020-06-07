@@ -6,7 +6,6 @@ public class SceneController : MonoBehaviour {
     [SerializeField] private GameObject enemyPrefab; // view in Inspector, but private
     private GameObject _enemy;
     void Start() {
-
     } // ///////////////////////////////////////////////////////////
 
     void Update() {
