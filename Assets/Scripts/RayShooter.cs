@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems; //Подключаем библиотеку для UI-системы.
+
 
 public class RayShooter : MonoBehaviour {
     private Camera _camera;
     void Start() {
         _camera = GetComponent<Camera>();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+       // Cursor.lockState = CursorLockMode.Locked;
+       // Cursor.visible = false;
     } // //////////////////////////////////////////////////////////
 
     private void OnGUI() { // after draw 3D
@@ -17,9 +19,9 @@ public class RayShooter : MonoBehaviour {
         float posY = _camera.pixelHeight/2 - size/2;
         GUI.Label(new Rect(posX, posY, size, size), "+");
     } // //////////////////////////////////////////////////////////
-
     void Update() {
-        if(Input.GetMouseButtonDown(0)) {
+        if(Input.GetMouseButtonDown(0) &&
+            !EventSystem.current.IsPointerOverGameObject()) {
             Vector3 point = new Vector3(_camera.pixelWidth/2, _camera.pixelHeight/2, 0);
             Ray ray = _camera.ScreenPointToRay(point);
             if(Physics.Raycast(ray, out RaycastHit hit)) {
