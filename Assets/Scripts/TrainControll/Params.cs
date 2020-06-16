@@ -38,10 +38,20 @@ public class Params {
         }
         return curParam;
     } // ///////////////////////////////////////////////////////////////////////////////////////
-    public int setChoice(bool success) {
+    public bool setChoiceLeft() {return curParam.setChoiceLeft();}
+    public bool setChoiceRight() {return curParam.setChoiceRight();}
+    public int setGood() {
+        int remains = curParam.setGood();
+        if(remains <= 0)
+            lstInWork.Remove(curParam);
+        return remains; 
+    } // ////////////////////////////////////////////////////////////////////////////////////////
+    public int setWrong() {return curParam.setWrong(); }
+        public int setChoice(bool success) {
         int remain = success ? curParam.setGood() : curParam.setWrong();
         if(remain <= 0)
             lstInWork.Remove(curParam);
         return lstInWork.Count;
     } // /////////////////////////////////////////////////////////////////////////////
+    public int RemainExercises() {return lstInWork.Count;}
 } // ******************************************************************************
