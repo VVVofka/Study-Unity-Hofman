@@ -31,7 +31,6 @@ public class Params : MonoBehaviour {
                         lstAll.Add(new Param(Luses.left, alfa, a, b, vd[vd.Length - 1], vd[vd.Length - 2]));
                         lstInWork.Add(lstAll[n++]);
                     }
-    }
 } // /////////////////////////////////////////////////////////////////////////
 void Update() { }
 } // ******************************************************************************
