@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public enum Luses {
@@ -27,15 +26,15 @@ public class Param{
         d = D;
         b = B;
     } // ///////////////////////////////////////////////////////////////////////////
-    public bool setGood() {
+    public int setGood() {
         history.Add(new Color32(0, 255, 0, 255));
         rnd *= krnd;
-        return --left <= 0;
+        return --left;
     } // ///////////////////////////////////////////////////////////////////////////////////////////////////
-    public bool setWrong() {
+    public int setWrong() {
         history.Add(new Color32(255, 0, 0, 255));
         rnd /= krnd;
-        return --left <= 0;
+        return ++left;
     } // ///////////////////////////////////////////////////////////////////////////////////////////////////
     public float getRnd() {
         return Random.Range(0.0f, rnd);

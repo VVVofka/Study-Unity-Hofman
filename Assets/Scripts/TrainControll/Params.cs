@@ -1,36 +1,47 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-public class Params : MonoBehaviour {
+public class Params {
+    Param curParam = null;
     List<Param> lstAll = new List<Param>();
     List<Param> lstInWork = new List<Param>();
-    Luses[] luses = {Luses.left, Luses.center, Luses.right};
-    float[] valfa = { -10, -5, 5, 10};
-    float[] va = {0.5f, 1.0f, 1.5f};
-    float[] vb = {5f, 6f, 7.5f};
-    float[] vd = {1f / 3f, 1f / 4f};
+    public Luses[] luses = {Luses.left, Luses.center, Luses.right};
+    public float[] valfa = { -10, -5, 5, 10};
+    public float[] va = {0.5f, 1.0f, 1.5f};
+    public float[] vb = {4.5f, 6f, 8.5f};
+    public float[] vd = {1f / 3f, 1f / 4f};
 
-    void Start() {
-        int n = 0;
+    public Params() {
         foreach(Luses l in luses)
             foreach(float alfa in valfa)
                 foreach(float a in va)
-                    foreach(float b in vb) {
-                        lstAll.Add(new Param(Luses.left, alfa, a, b, vd[0], vd[1]));
-                        lstInWork.Add(lstAll[n++]);
-                        for(int nd = 1; nd < vd.Length - 1; nd++) {
-                            lstAll.Add(new Param(Luses.left, alfa, a, b, vd[nd], vd[nd - 1]));
-                            lstInWork.Add(lstAll[n++]);
-                            lstAll.Add(new Param(Luses.left, alfa, a, b, vd[nd], vd[nd + 1]));
-                            lstInWork.Add(lstAll[n++]);
+                    foreach(float b in vb) 
+                        for(int nd = 0; nd < vd.Length; nd++) {
+                            if(nd > 0) {
+                                lstAll.Add(new Param(Luses.left, alfa, a, b, vd[nd], vd[nd - 1]));
+                                lstInWork.Add(lstAll[lstAll.Count - 1]);
+                            }
+                            if(nd < vd.Length - 1) {
+                                lstAll.Add(new Param(Luses.left, alfa, a, b, vd[nd], vd[nd + 1]));
+                                lstInWork.Add(lstAll[lstAll.Count - 1]);
+                            }
                         }
-                        lstAll.Add(new Param(Luses.left, alfa, a, b, vd[vd.Length - 1], vd[vd.Length - 2]));
-                        lstInWork.Add(lstAll[n++]);
-                    }
-} // /////////////////////////////////////////////////////////////////////////
-void Update() { }
+    } // /////////////////////////////////////////////////////////////////////////
+    public Param selectParam() {
+        curParam = null;
+        float max = 0f;
+        foreach(Param cur in lstInWork) { 
+            float rnd = cur.getRnd();
+            if(rnd > max) {
+                max = rnd;
+                curParam = cur;
+            }
+        }
+        return curParam;
+    } // ///////////////////////////////////////////////////////////////////////////////////////
+    public int setChoice(bool success) {
+        int remain = success ? curParam.setGood() : curParam.setWrong();
+        if(remain <= 0)
+            lstInWork.Remove(curParam);
+        return lstInWork.Count;
+    } // /////////////////////////////////////////////////////////////////////////////
 } // ******************************************************************************

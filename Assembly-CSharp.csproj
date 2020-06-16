@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\ReactiveTarget.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\Spin.cs" />
+    <Compile Include="Assets\Scripts\TrainControll\Controller.cs" />
     <Compile Include="Assets\Scripts\TrainControll\Param.cs" />
     <Compile Include="Assets\Scripts\TrainControll\Params.cs" />
     <Compile Include="Assets\Scripts\WanderingAI.cs" />
