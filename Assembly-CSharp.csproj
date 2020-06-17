@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\TrainControll\Controller.cs" />
     <Compile Include="Assets\Scripts\TrainControll\Param.cs" />
     <Compile Include="Assets\Scripts\TrainControll\Params.cs" />
+    <Compile Include="Assets\Scripts\TrainControll\UVController.cs" />
     <Compile Include="Assets\Scripts\WanderingAI.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files/Unity/2019.3.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
